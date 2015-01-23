@@ -55,6 +55,7 @@ public class PhotoFeedActivity extends ActionBarActivity {
                         photo.setProfilePictureUrl(jsonPhoto.getJSONObject("user").getString("profile_picture"));
                         if(jsonPhoto.getJSONObject("caption")!=null) photo.setCaption(jsonPhoto.getJSONObject("caption").getString("text"));
                         photo.setPhotoUrl(jsonPhoto.getJSONObject("images").getJSONObject("standard_resolution").getString("url"));
+                        photo.setTimeElapsed(Long.valueOf(jsonPhoto.getString("created_time")));
                         photo.setPhotoHeight(jsonPhoto.getJSONObject("images").getJSONObject("standard_resolution").getInt("height"));
                         photoArrayList.add(photo);
 

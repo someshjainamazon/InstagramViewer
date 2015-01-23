@@ -1,6 +1,7 @@
 package com.example.somesh.instagramviewer;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.text.style.ImageSpan;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.makeramen.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
 
 import java.util.ArrayList;
 
@@ -35,13 +38,21 @@ public class PhotoAdapter extends ArrayAdapter<Photo> {
         TextView tvCaption = (TextView)convertView.findViewById(R.id.tvPhoto);
         ImageView ivPhoto = (ImageView)convertView.findViewById(R.id.ivPhoto);
         TextView tvUserName = (TextView)convertView.findViewById(R.id.tvUser);
-
+        ImageView ivProfile = (ImageView)convertView.findViewById(R.id.ivProfile);
+        TextView tvTime = (TextView) convertView.findViewById(R.id.tvTime);
         tvUserName.setText(photo.getUsername());
+        tvTime.setText(photo.getTimeElapsed());
 
         tvCaption.setText(photo.getCaption());
         ivPhoto.getLayoutParams().height=photo.getPhotoHeight();
         ivPhoto.setImageResource(0);
         Picasso.with(getContext()).load(photo.getPhotoUrl()).into(ivPhoto);
+
+
+        Transformation transformation = new RoundedTransformationBuilder().borderColor(Color.MAGENTA).borderWidthDp(1).cornerRadiusDp(20).oval(false).build();
+
+        //ivProfile.setImageResource(0);
+        Picasso.with(getContext()).load(photo.getProfilePictureUrl()).fit().transform(transformation).into(ivProfile);
 
         return convertView;
     }

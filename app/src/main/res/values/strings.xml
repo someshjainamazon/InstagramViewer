@@ -6,5 +6,6 @@
     <string name="action_settings">Settings</string>
     <string name="tvString">this is a default text</string>
     <string name="tvUser">Username</string>
+    <string name="tvTime">0 seconds ago</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package com.example.somesh.instagramviewer;
 
+import android.text.format.DateUtils;
+
 /**
  * Created by somesh on 1/22/15.
  */
@@ -8,6 +10,17 @@ public class Photo {
     private String username;
     private String caption;
     private String photoUrl;
+    private String timeElapsed;
+
+
+    public String getTimeElapsed() {
+        return timeElapsed;
+    }
+
+    public void setTimeElapsed(long time) {
+        this.timeElapsed = (String)DateUtils.getRelativeTimeSpanString(time, System.currentTimeMillis()/1000,DateUtils.SECOND_IN_MILLIS);
+    }
+
 
     public String getProfilePictureUrl() {
         return profilePictureUrl;
