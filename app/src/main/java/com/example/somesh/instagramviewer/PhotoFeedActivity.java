@@ -1,5 +1,7 @@
 package com.example.somesh.instagramviewer;
 
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,6 +19,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 
 public class PhotoFeedActivity extends ActionBarActivity {
@@ -30,6 +34,7 @@ public class PhotoFeedActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_feed);
+        //populatePhotos();
 
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -73,17 +78,33 @@ public class PhotoFeedActivity extends ActionBarActivity {
                         Photo photo = new Photo();
                         photo.setUsername(jsonPhoto.getJSONObject("user").getString("username"));
                         photo.setProfilePictureUrl(jsonPhoto.getJSONObject("user").getString("profile_picture"));
-                        if(jsonPhoto.getJSONObject("caption")!=null) photo.setCaption(jsonPhoto.getJSONObject("caption").getString("text"));
+                        if(jsonPhoto.getString("caption")!=null && jsonPhoto.getJSONObject("caption")!=null) photo.setCaption(jsonPhoto.getJSONObject("caption").getString("text"));
                         photo.setPhotoUrl(jsonPhoto.getJSONObject("images").getJSONObject("standard_resolution").getString("url"));
                         photo.setTimeElapsed(Long.valueOf(jsonPhoto.getString("created_time")));
                         photo.setPhotoHeight(jsonPhoto.getJSONObject("images").getJSONObject("standard_resolution").getInt("height"));
                         photo.setLikesCount(jsonPhoto.getJSONObject("likes").getInt("count"));
+                        if(jsonPhoto.getString("comments")!=null && jsonPhoto.getJSONObject("comments")!=null){
+                            JSONArray jsonComments = jsonPhoto.getJSONObject("comments").getJSONArray("data");
+                            ArrayList<Comment> comments = new ArrayList<Comment>();
+
+                            for (int j=0;j<jsonComments.length();j++){
+                                JSONObject jsonComment = jsonComments.getJSONObject(j);
+                                Comment comment = new Comment(jsonComment.getString("text"), jsonComment.getJSONObject("from").getString("username"),
+                                        Long.valueOf(jsonComment.getString("created_time")));
+                                comments.add(comment);
+                            }
+
+                            Comment recentComment = Comment.getLatestComment(comments);
+                            photo.setComment(recentComment);
+
+                        }
+
                         photoArrayList.add(photo);
 
                     }
                     photoAdapter.notifyDataSetChanged();
                 }catch(JSONException e){
-
+                    System.out.println(e);
                 }
             }
 

@@ -61,11 +61,11 @@
         android:layout_height="wrap_content"
         android:text="@string/tvTime"
         android:id="@+id/tvTime"
-        android:layout_above="@+id/ivPhoto"
-        android:layout_marginLeft="30.0sp"
         android:textColor="@android:color/holo_purple"
-        android:layout_toRightOf="@+id/tvUser"
-        android:layout_toEndOf="@+id/tvUser" />
+        android:layout_above="@+id/ivPhoto"
+        android:paddingRight="5sp"
+        android:layout_alignRight="@+id/tvLikes"
+        android:layout_alignEnd="@+id/tvLikes" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,6 +93,31 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Comments :-"
+        android:textColor="@color/material_blue_grey_800"
+        android:textStyle="bold"
+        android:id="@+id/tvComment"
+        android:layout_below="@+id/tvPhoto"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tvCommentVal"
+        android:textStyle="italic"
+        android:textColor="@android:color/holo_blue_dark"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tvComment"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

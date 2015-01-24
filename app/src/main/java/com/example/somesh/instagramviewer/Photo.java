@@ -2,6 +2,8 @@ package com.example.somesh.instagramviewer;
 
 import android.text.format.DateUtils;
 
+import java.util.ArrayList;
+
 /**
  * Created by somesh on 1/22/15.
  */
@@ -12,6 +14,28 @@ public class Photo {
     private String photoUrl;
     private String timeElapsed;
     private int likesCount;
+    private Comment comment;
+
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
+
+
+    public String getLocationName() {
+        if(locationName==null || locationName=="") return "";
+        return locationName;
+    }
+
+    public void setLocationName(String locationName) {
+        this.locationName = locationName;
+    }
+
+    private String locationName;
 
 
     public int getLikesCount() {
@@ -25,6 +49,11 @@ public class Photo {
 
 
     public String getTimeElapsed() {
+
+        if(timeElapsed.contains("seconds")){
+            String [] arrList = timeElapsed.split(" ");
+            return arrList[0]+" sec";
+        }
         return timeElapsed;
     }
 
@@ -75,6 +104,7 @@ public class Photo {
     }
 
     public String getCaption() {
+        if(caption==null) return "";
         return caption;
     }
 

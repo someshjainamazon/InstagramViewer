@@ -43,9 +43,11 @@ public class PhotoAdapter extends ArrayAdapter<Photo> {
         ImageView ivProfile = (ImageView)convertView.findViewById(R.id.ivProfile);
         TextView tvTime = (TextView) convertView.findViewById(R.id.tvTime);
         TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
+        TextView tvComment = (TextView) convertView.findViewById(R.id.tvCommentVal);
 
         tvUserName.setText(photo.getUsername());
         tvTime.setText(photo.getTimeElapsed());
+        tvComment.setText(photo.getComment().getCommenter()+" says - "+photo.getComment().getCommentText());
 
         /*if(photo.getLikesCount()>=1000) tvLikes.setText((photo.getLikesCount())/1000+"k likes");
         else tvLikes.setText(photo.getLikesCount()+" likes");*/
