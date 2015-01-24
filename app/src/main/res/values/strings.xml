@@ -7,5 +7,6 @@
     <string name="tvString">this is a default text</string>
     <string name="tvUser">Username</string>
     <string name="tvTime">0 seconds ago</string>
+    <string name="tv_likes">LikeCount</string>
 
 </resources>

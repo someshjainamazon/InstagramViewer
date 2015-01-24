@@ -11,6 +11,17 @@ public class Photo {
     private String caption;
     private String photoUrl;
     private String timeElapsed;
+    private int likesCount;
+
+
+    public int getLikesCount() {
+        return likesCount;
+    }
+
+    public void setLikesCount(int likesCount) {
+        this.likesCount = likesCount;
+    }
+
 
 
     public String getTimeElapsed() {

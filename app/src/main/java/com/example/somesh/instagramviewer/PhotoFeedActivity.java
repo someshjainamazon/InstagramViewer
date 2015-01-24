@@ -57,6 +57,7 @@ public class PhotoFeedActivity extends ActionBarActivity {
                         photo.setPhotoUrl(jsonPhoto.getJSONObject("images").getJSONObject("standard_resolution").getString("url"));
                         photo.setTimeElapsed(Long.valueOf(jsonPhoto.getString("created_time")));
                         photo.setPhotoHeight(jsonPhoto.getJSONObject("images").getJSONObject("standard_resolution").getInt("height"));
+                        photo.setLikesCount(jsonPhoto.getJSONObject("likes").getInt("count"));
                         photoArrayList.add(photo);
 
                     }

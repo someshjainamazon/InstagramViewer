@@ -14,7 +14,9 @@ import com.makeramen.RoundedTransformationBuilder;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by somesh on 1/22/15.
@@ -40,14 +42,19 @@ public class PhotoAdapter extends ArrayAdapter<Photo> {
         TextView tvUserName = (TextView)convertView.findViewById(R.id.tvUser);
         ImageView ivProfile = (ImageView)convertView.findViewById(R.id.ivProfile);
         TextView tvTime = (TextView) convertView.findViewById(R.id.tvTime);
+        TextView tvLikes = (TextView) convertView.findViewById(R.id.tvLikes);
+
         tvUserName.setText(photo.getUsername());
         tvTime.setText(photo.getTimeElapsed());
 
+        /*if(photo.getLikesCount()>=1000) tvLikes.setText((photo.getLikesCount())/1000+"k likes");
+        else tvLikes.setText(photo.getLikesCount()+" likes");*/
+
+        tvLikes.setText((NumberFormat.getNumberInstance(Locale.US).format(photo.getLikesCount()))+" likes");
         tvCaption.setText(photo.getCaption());
         ivPhoto.getLayoutParams().height=photo.getPhotoHeight();
         ivPhoto.setImageResource(0);
         Picasso.with(getContext()).load(photo.getPhotoUrl()).into(ivPhoto);
-
 
         Transformation transformation = new RoundedTransformationBuilder().borderColor(Color.MAGENTA).borderWidthDp(1).cornerRadiusDp(20).oval(false).build();
 
