@@ -1,9 +1,11 @@
 package com.example.somesh.instagramviewer;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -16,17 +18,35 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+
 public class PhotoFeedActivity extends ActionBarActivity {
 
     private final String clientId="b0ddc9bc7657454989b02c70c9b2c9b6";
     private ArrayList<Photo> photoArrayList;
     private PhotoAdapter photoAdapter;
+    private SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_photo_feed);
-        populatePhotos();
+
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeContainer.setRefreshing(false);
+                populatePhotos();
+
+            }
+        });
+
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+
     }
 
     private void populatePhotos() {

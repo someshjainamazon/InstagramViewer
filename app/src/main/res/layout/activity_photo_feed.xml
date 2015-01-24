@@ -3,14 +3,43 @@
     android:layout_height="match_parent"
     tools:context=".PhotoFeedActivity"
     >
+    <!--
+    <com.yalantis.pulltorefresh.library.PullToRefreshView
+    android:id="@+id/pull_to_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lvItems"
+            android:divider="@android:color/black"
+            android:dividerHeight="30.0sp"
+
+            />
+
+</com.yalantis.pulltorefresh.library.PullToRefreshView>-->
 
 
-    <ListView
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lvItems"
-        android:divider="@android:color/black"
-        android:dividerHeight="30.0sp"
+        android:layout_height="match_parent">
 
-        />
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/lvItems"
+            android:divider="@android:color/black"
+            android:dividerHeight="30.0sp"
+            />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+
+
+
 </RelativeLayout>
