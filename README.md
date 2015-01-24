@@ -9,7 +9,7 @@ Features included :
 5. Pull to refresh has been added using SwipeRefreshLayout 
 6. Displaying the most recent comment 
 
-
+![Alt text](https://github.com/someshjainiitkgp/InstagramViewer/blob/master/photoBrowse.gif "Photo Browser Video")
 
 
 
