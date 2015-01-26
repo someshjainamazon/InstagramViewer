@@ -54,7 +54,7 @@ public class PhotoAdapter extends ArrayAdapter<Photo> {
 
         tvLikes.setText((NumberFormat.getNumberInstance(Locale.US).format(photo.getLikesCount()))+" likes");
         tvCaption.setText(photo.getCaption());
-        ivPhoto.getLayoutParams().height=photo.getPhotoHeight();
+        //ivPhoto.getLayoutParams().height=photo.getPhotoHeight();
         ivPhoto.setImageResource(0);
         Picasso.with(getContext()).load(photo.getPhotoUrl()).into(ivPhoto);
 

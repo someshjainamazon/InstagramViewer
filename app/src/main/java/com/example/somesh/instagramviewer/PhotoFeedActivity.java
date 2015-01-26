@@ -104,7 +104,7 @@ public class PhotoFeedActivity extends ActionBarActivity {
                     }
                     photoAdapter.notifyDataSetChanged();
                 }catch(JSONException e){
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
             }
 
